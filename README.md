@@ -1,6 +1,6 @@
-# advanced_flutter_arabic
+# Tut App
 
-A new Flutter project.
+Clean architecture with MVVM design pattern Flutter Application
 
 ## Getting Started
 
