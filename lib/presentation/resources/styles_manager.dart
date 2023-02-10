@@ -1,4 +1,4 @@
-import 'package:advanced_flutter_arabic/presentation/font_manager.dart';
+import 'package:advanced_flutter_arabic/presentation/resources/font_manager.dart';
 import 'package:flutter/material.dart';
 
 TextStyle _getTextStyle(double fontSize, FontWeight fontWeight, Color color) {
