@@ -1,6 +1,7 @@
 import 'package:advanced_flutter_arabic/presentation/forgot_password/forgot_password_view.dart';
 import 'package:advanced_flutter_arabic/presentation/home/home_view.dart';
 import 'package:advanced_flutter_arabic/presentation/login/login_view.dart';
+import 'package:advanced_flutter_arabic/presentation/onboarding/onboarding_view.dart';
 import 'package:advanced_flutter_arabic/presentation/register/register_view.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/strings_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/splash/splash_view.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 
 class Routes {
   static const String splashRoute = "/";
+  static const String onBoardingRoute = "/onBoarding";
   static const String loginRoute = "/login";
   static const String registerRoute = "/register";
   static const String forgotPasswordRoute = "/forgotPassword";
@@ -21,6 +23,8 @@ class RoutesGenerator {
     switch (settings.name) {
       case Routes.splashRoute:
         return MaterialPageRoute(builder: (_) => const SplashView());
+      case Routes.onBoardingRoute:
+        return MaterialPageRoute(builder: (_) => const OnBoardingView());
       case Routes.loginRoute:
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.registerRoute:
