@@ -55,21 +55,34 @@ ThemeData getApplicationTheme() {
 
     //text theme
     textTheme: TextTheme(
-      displayLarge:
-          getLightStyle(color: ColorManager.white, fontSize: FontSize.s22),
+      displayLarge: getLightStyle(
+        color: ColorManager.white,
+        fontSize: FontSize.s22,
+      ),
       headlineLarge: getSemiBoldStyle(
         color: ColorManager.darkGrey,
         fontSize: FontSize.s16,
       ),
-      titleLarge: getMediumStyle(
-        color: ColorManager.lightGrey,
-        fontSize: FontSize.s14,
-      ),
-      labelSmall: getRegularStyle(
-        color: ColorManager.grey1,
+      titleLarge: getSemiBoldStyle(
+        color: ColorManager.darkGrey,
+        fontSize: FontSize.s16,
       ),
       bodyLarge: getRegularStyle(
-        color: ColorManager.grey,
+        color: ColorManager.darkGrey,
+        fontSize: FontSize.s14,
+      ),
+      //Button Label
+      labelLarge: getRegularStyle(
+        color: ColorManager.grey1,
+      ),
+      //Text Button
+      labelMedium: getMediumStyle(
+        color: ColorManager.primary,
+        fontSize: FontSize.s16
+      ),
+      //Caption
+      labelSmall: getRegularStyle(
+        color: ColorManager.grey1,
       ),
     ),
 
@@ -97,7 +110,8 @@ ThemeData getApplicationTheme() {
       ),
       //focused border style
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: ColorManager.primary, width: AppSize.s1_5),
+        borderSide:
+            BorderSide(color: ColorManager.primary, width: AppSize.s1_5),
         borderRadius: const BorderRadius.all(
           Radius.circular(AppSize.s8),
         ),
