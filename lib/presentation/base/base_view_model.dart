@@ -1,8 +1,9 @@
 // shared variables and function that will be used through any view model.
-abstract class BaseViewModel{
+abstract class BaseViewModel extends BaseViewModelInputs with BaseViewModelOutputs{
 
 }
 
+//Inputs: orders from View (UI) to ViewModel
 abstract class BaseViewModelInputs{
 
   //called to start view model job
@@ -13,4 +14,5 @@ abstract class BaseViewModelInputs{
 
 }
 
+//Outputs: changes that ViewModel will do to the View (UI)
 abstract class BaseViewModelOutputs{}

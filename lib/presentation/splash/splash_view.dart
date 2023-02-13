@@ -55,7 +55,7 @@
 //
 //
 
-import 'package:advanced_flutter_arabic/presentation/onboarding/onboarding_view.dart';
+import 'package:advanced_flutter_arabic/presentation/onboarding/view/onboarding_view.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/color_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/constant_manager.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';

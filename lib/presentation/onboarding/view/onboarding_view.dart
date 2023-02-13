@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../resources/constant_manager.dart';
+import '../../resources/constant_manager.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({Key? key}) : super(key: key);
@@ -17,32 +17,10 @@ class OnBoardingView extends StatefulWidget {
 }
 
 class _OnBoardingViewState extends State<OnBoardingView> {
-  late final List<SliderObject> _list = _getSliderData();
   final PageController _pageController = PageController();
-  int _currentIndex = 0;
 
-  List<SliderObject> _getSliderData() => [
-        SliderObject(
-          AppStrings.onBoardingTitle1,
-          AppStrings.onBoardingBody1,
-          ImageAssets.onBoarding1,
-        ),
-        SliderObject(
-          AppStrings.onBoardingTitle2,
-          AppStrings.onBoardingBody2,
-          ImageAssets.onBoarding2,
-        ),
-        SliderObject(
-          AppStrings.onBoardingTitle3,
-          AppStrings.onBoardingBody3,
-          ImageAssets.onBoarding3,
-        ),
-        SliderObject(
-          AppStrings.onBoardingTitle4,
-          AppStrings.onBoardingBody4,
-          ImageAssets.onBoarding4,
-        ),
-      ];
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -158,21 +136,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     );
   }
 
-  int _getPreviousIndex() {
-    int previousIndex = --_currentIndex;
-    if (previousIndex == -1) {
-      previousIndex = _list.length - 1;
-    }
-    return previousIndex;
-  }
 
-  int _getNextIndex() {
-    int nextIndex = ++_currentIndex;
-    if (nextIndex == _list.length) {
-      nextIndex = 0;
-    }
-    return nextIndex;
-  }
 
   Widget _getProperCirlce(int index){
     if(index == _currentIndex){
@@ -184,17 +148,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
 }
 
-class SliderObject {
-  String title;
-  String body;
-  String image;
 
-  SliderObject(
-    this.title,
-    this.body,
-    this.image,
-  );
-}
 
 class OnBoardingPage extends StatelessWidget {
   final SliderObject _sliderObject;
