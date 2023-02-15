@@ -1,7 +1,9 @@
+import 'package:advanced_flutter_arabic/app/constants.dart';
+
 extension NonNulString on String?{
   String orEmpty(){
     if(this == null) {
-      return "";
+      return Constants.empty;
     } else{
       return this!;
     }
@@ -11,7 +13,7 @@ extension NonNulString on String?{
 extension NonNulInt on int?{
   int orZero(){
     if(this == null) {
-      return 0;
+      return Constants.zero;
     } else{
       return this!;
     }
