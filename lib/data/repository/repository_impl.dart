@@ -1,5 +1,6 @@
 import 'package:advanced_flutter_arabic/data/data_source/remote_data_spurce.dart';
 import 'package:advanced_flutter_arabic/data/mapper/mapper.dart';
+import 'package:advanced_flutter_arabic/data/network/error_handler.dart';
 import 'package:advanced_flutter_arabic/data/network/failure.dart';
 import 'package:advanced_flutter_arabic/data/network/network_info.dart';
 import 'package:advanced_flutter_arabic/data/network/requests.dart';
@@ -17,18 +18,22 @@ class RepositoryImpl implements Repository{
   Future<Either<Failure, Authentication>> login(LoginRequest loginRequest) async {
 
     if(await _networkInfo.isConnected){
-      final response = await _remoteDataSource.login(loginRequest);
+      try{
+        final response = await _remoteDataSource.login(loginRequest);
 
-      if(response.status == 0){
-        //success
-        return Right(response.toDomain());
-      } else{
-        //failure (business)
-        return Left(Failure(409, response.message ?? "Business error message!"));
+        if(response.status == ApiInternalStatus.success){
+          //success
+          return Right(response.toDomain());
+        } else{
+          //failure (business)
+          return Left(Failure(ApiInternalStatus.failure, response.message ?? ResponseMessage.unknown));
+        }
+      }catch(error){
+        return Left(ErrorHandler.handle(error).failure);
       }
     } else{
       //failure (connection)
-      return Left(Failure(404, "Please check your internet connection!"));
+      return Left(DataSource.noInternetConnection.getFailure());
     }
 
   }
