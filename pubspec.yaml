@@ -45,6 +45,7 @@ dependencies:
   build_runner: ^2.3.3
   json_annotation: ^4.8.0
   dartz: ^0.10.1
+  internet_connection_checker: ^1.0.0+1
 
 dev_dependencies:
   flutter_test:
