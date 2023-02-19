@@ -1,5 +1,7 @@
 import 'package:advanced_flutter_arabic/app/constants.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 const String contentType = "content-type";
 const String applicationJson = "application/json";
@@ -23,6 +25,15 @@ class DioFactory {
         headers: headers,
         sendTimeout: timeOut,
         receiveTimeout: timeOut);
+
+    if (kDebugMode) {
+      dio.interceptors.add(PrettyDioLogger(
+        requestHeader: true,
+        requestBody: false,
+        responseHeader: false,
+      ));
+    }
+
 
     return dio;
   }
