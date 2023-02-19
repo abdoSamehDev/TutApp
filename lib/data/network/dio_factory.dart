@@ -1,3 +1,4 @@
+import 'package:advanced_flutter_arabic/app/app_prefs.dart';
 import 'package:advanced_flutter_arabic/app/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -10,15 +11,19 @@ const String authorization = "authorization";
 const String defaultLanguage = "language";
 
 class DioFactory {
+  final AppPreferences _preferences;
+
+  DioFactory(this._preferences);
+
   Future<Dio> getDio() async {
     Dio dio = Dio();
-
+    String language = await _preferences.getAppLanguage();
 
     Map<String, dynamic> headers = {
       contentType: applicationJson,
       accept: applicationJson,
       authorization: Constants.token,
-      defaultLanguage: "en" //todo: get lang from app prefs
+      defaultLanguage: language
     };
     dio.options = BaseOptions(
         baseUrl: Constants.baseUrl,
@@ -33,7 +38,6 @@ class DioFactory {
         responseHeader: false,
       ));
     }
-
 
     return dio;
   }
