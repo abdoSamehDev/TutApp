@@ -36,7 +36,7 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return _getContentWidget();
   }
 
   Widget _getContentWidget() {
@@ -70,7 +70,7 @@ class _LoginViewState extends State<LoginView> {
                         decoration: InputDecoration(
                             label: const Text(AppStrings.username),
                             hintText: AppStrings.username,
-                            errorText: (snapshot.data == true)
+                            errorText: (snapshot.data ?? true)
                                 ? null
                                 : AppStrings.usernameError),
                       );
@@ -93,7 +93,7 @@ class _LoginViewState extends State<LoginView> {
                         decoration: InputDecoration(
                             label: const Text(AppStrings.password),
                             hintText: AppStrings.password,
-                            errorText: (snapshot.data == true)
+                            errorText: (snapshot.data ?? true)
                                 ? null
                                 : AppStrings.passwordError),
                       );
@@ -108,13 +108,15 @@ class _LoginViewState extends State<LoginView> {
                     horizontal: AppPadding.p20,
                   ),
                   child: StreamBuilder<bool>(
-                    stream: _viewModel.outIsPasswordValid,
+                    stream: _viewModel.outputAreAllInputsValid,
                     builder: (context, snapshot) {
                       return ElevatedButton(
                         onPressed: () {
-                          _viewModel.login()
+                          (snapshot.data ?? false) ? _viewModel.login() : null;
                         },
-                        child: Text(AppStrings.login),
+                        child: const Text(
+                          AppStrings.login,
+                        ),
                       );
                     },
                   ),
