@@ -47,6 +47,9 @@ ThemeData getApplicationTheme() {
           fontSize: FontSize.s17,
         ),
         backgroundColor: ColorManager.primary,
+        disabledBackgroundColor: ColorManager.grey,
+        foregroundColor: ColorManager.white,
+        disabledForegroundColor: ColorManager.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppSize.s12),
         ),

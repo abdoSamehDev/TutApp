@@ -27,7 +27,7 @@ class _LoginViewState extends State<LoginView> {
       _viewModel.setUsername(_usernameController.text);
     });
     _passwordController.addListener(() {
-      _viewModel.setUsername(_passwordController.text);
+      _viewModel.setPassword(_passwordController.text);
     });
   }
 
@@ -117,11 +117,11 @@ class _LoginViewState extends State<LoginView> {
                         width: double.infinity,
                         height: AppSize.s40,
                         child: ElevatedButton(
-                          onPressed: () {
-                            (snapshot.data ?? false)
-                                ? _viewModel.login()
-                                : null;
-                          },
+                          onPressed: (snapshot.data ?? false)
+                              ? () {
+                                  _viewModel.login();
+                                }
+                              : null,
                           child: const Text(
                             AppStrings.login,
                           ),
@@ -142,7 +142,8 @@ class _LoginViewState extends State<LoginView> {
                       children: [
                         TextButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, Routes.forgotPasswordRoute);
+                            Navigator.pushNamed(
+                                context, Routes.forgotPasswordRoute);
                           },
                           child: Text(
                             AppStrings.forgetPassword,
@@ -151,7 +152,7 @@ class _LoginViewState extends State<LoginView> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, Routes.registerRoute);
+                            Navigator.pushNamed(context, Routes.registerRoute);
                           },
                           child: Text(
                             AppStrings.registerText,
