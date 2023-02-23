@@ -5,6 +5,8 @@ import 'package:advanced_flutter_arabic/presentation/resources/strings_manager.d
 import 'package:advanced_flutter_arabic/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
+import '../../resources/routes_manager.dart';
+
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
 
@@ -41,9 +43,9 @@ class _LoginViewState extends State<LoginView> {
 
   Widget _getContentWidget() {
     return Scaffold(
+      backgroundColor: ColorManager.white,
       body: Container(
         padding: const EdgeInsets.only(top: AppPadding.p100),
-        color: ColorManager.white,
         child: SingleChildScrollView(
           child: Form(
             key: _formKey,
@@ -110,17 +112,53 @@ class _LoginViewState extends State<LoginView> {
                   child: StreamBuilder<bool>(
                     stream: _viewModel.outputAreAllInputsValid,
                     builder: (context, snapshot) {
-                      return ElevatedButton(
-                        onPressed: () {
-                          (snapshot.data ?? false) ? _viewModel.login() : null;
-                        },
-                        child: const Text(
-                          AppStrings.login,
+                      return SizedBox(
+                        width: double.infinity,
+                        height: AppSize.s40,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            (snapshot.data ?? false)
+                                ? _viewModel.login()
+                                : null;
+                          },
+                          child: const Text(
+                            AppStrings.login,
+                          ),
                         ),
                       );
                     },
                   ),
                 ),
+                const SizedBox(
+                  height: AppSize.s14,
+                ),
+                Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppPadding.p20,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context, Routes.forgotPasswordRoute);
+                          },
+                          child: Text(
+                            AppStrings.forgetPassword,
+                            style: Theme.of(context).textTheme.labelMedium,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context, Routes.registerRoute);
+                          },
+                          child: Text(
+                            AppStrings.registerText,
+                            style: Theme.of(context).textTheme.labelMedium,
+                          ),
+                        ),
+                      ],
+                    )),
               ],
             ),
           ),
