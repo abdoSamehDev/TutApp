@@ -34,8 +34,8 @@ class DioFactory {
     if (kDebugMode) {
       dio.interceptors.add(PrettyDioLogger(
         requestHeader: true,
-        requestBody: false,
-        responseHeader: false,
+        requestBody: true,
+        responseHeader: true,
       ));
     }
 

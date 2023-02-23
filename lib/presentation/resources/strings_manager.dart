@@ -25,6 +25,14 @@ class AppStrings{
   static const forgetPassword = "Forget Password";
   static const registerText = "Not a member? Sign Up";
 
+  //STATE RENDERER
+  //loading state
+  static const loading = "Loading...";
+
+  //error state
+  static const retryAgain = "Retry Again";
+  static const ok = "OK";
+
 
 
 
