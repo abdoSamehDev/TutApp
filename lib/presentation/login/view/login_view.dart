@@ -1,3 +1,4 @@
+import 'package:advanced_flutter_arabic/app/di.dart';
 import 'package:advanced_flutter_arabic/presentation/login/view_model/login_view_model.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/assets_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/color_manager.dart';
@@ -15,7 +16,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final LoginViewModel _viewModel = LoginViewModel(_loginUseCase);
+  final LoginViewModel _viewModel = instance<LoginViewModel>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
