@@ -1,4 +1,4 @@
-import 'package:advanced_flutter_arabic/data/data_source/remote_data_spurce.dart';
+import 'package:advanced_flutter_arabic/data/data_source/remote_data_source.dart';
 import 'package:advanced_flutter_arabic/data/mapper/mapper.dart';
 import 'package:advanced_flutter_arabic/data/network/error_handler.dart';
 import 'package:advanced_flutter_arabic/data/network/failure.dart';
