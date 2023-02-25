@@ -1,3 +1,4 @@
+import 'package:advanced_flutter_arabic/app/app_prefs.dart';
 import 'package:advanced_flutter_arabic/app/di.dart';
 import 'package:advanced_flutter_arabic/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:advanced_flutter_arabic/presentation/login/view_model/login_view_model.dart';
@@ -18,6 +19,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final LoginViewModel _viewModel = instance<LoginViewModel>();
+  final AppPreferences _preferences = instance<AppPreferences>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -34,6 +36,7 @@ class _LoginViewState extends State<LoginView> {
       if (isLoggedIn) {
         WidgetsBinding.instance.addPostFrameCallback(
           (_) {
+            _preferences.setUserLoggedIn();
             Navigator.pushReplacementNamed(context, Routes.homeRoute);
           },
         );

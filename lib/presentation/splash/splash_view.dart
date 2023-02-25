@@ -55,6 +55,8 @@
 //
 //
 
+import 'package:advanced_flutter_arabic/app/app_prefs.dart';
+import 'package:advanced_flutter_arabic/app/di.dart';
 import 'package:advanced_flutter_arabic/presentation/onboarding/view/onboarding_view.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/color_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/constant_manager.dart';
@@ -63,11 +65,47 @@ import 'package:flutter/material.dart';
 import '../resources/assets_manager.dart';
 import '../resources/routes_manager.dart';
 
-class SplashView extends StatelessWidget {
-  const SplashView({Key? key}) : super(key: key);
+class SplashView extends StatefulWidget {
+
+  SplashView({Key? key}) : super(key: key);
+
+  @override
+  State<SplashView> createState() => _SplashViewState();
+}
+
+class _SplashViewState extends State<SplashView> {
+  final AppPreferences _preferences = instance<AppPreferences>();
+
+  // bool isUserLoggedIn = false;
+  String? nextRoute;
+
+  String getNext(){
+    _preferences.isUserLoggedIn().then((isUserLoggedIn) =>{
+      if(isUserLoggedIn){
+        nextRoute = Routes.homeRoute
+      } else{
+        _preferences.isOnBoardingScreenViewed().then((isOnBoardingScreenViewed) => {
+          if(isOnBoardingScreenViewed){
+            nextRoute = Routes.loginRoute
+          }else{
+            nextRoute = Routes.onBoardingRoute
+          }
+        })
+      }
+    });
+    return nextRoute ?? Routes.onBoardingRoute;
+  }
+
+  @override
+  void initState() {
+    getNext();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    // _preferences.isUserLoggedIn().then((value) => isUserLoggedIn = value);
+    // _preferences.isOnBoardingScreenViewed().then((value) => isOnBoardingViewed = value);
     return AnimatedSplashScreen(
       splash:  const Image(
         image: AssetImage(ImageAssets.splashLogo),
@@ -78,7 +116,7 @@ class SplashView extends StatelessWidget {
       // pageTransitionType: PageTransitionType.fade,
       duration: AppConstants.splashDuration,
       splashIconSize: double.infinity,
-      nextRoute: Routes.onBoardingRoute,
+      nextRoute: getNext(),
       splashTransition: SplashTransition.scaleTransition,
     );
   }
