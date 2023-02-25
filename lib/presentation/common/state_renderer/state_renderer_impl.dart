@@ -127,8 +127,8 @@ extension FlowStateExtension on FlowState {
     return ModalRoute.of(context)?.isCurrent != true;
   }
 
-  dismissDialog(BuildContext context){
-    if(_isCurrentDialogShowing(context)){
+  dismissDialog(BuildContext context) {
+    if (_isCurrentDialogShowing(context)) {
       Navigator.of(context, rootNavigator: true).pop(true);
     }
   }

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:advanced_flutter_arabic/domain/use_case/login_use_case.dart';
 import 'package:advanced_flutter_arabic/presentation/base/base_view_model.dart';
 import 'package:advanced_flutter_arabic/presentation/common/freezed_data_class.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:advanced_flutter_arabic/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:flutter/foundation.dart';
 
 class LoginViewModel extends BaseViewModel
@@ -26,11 +26,13 @@ class LoginViewModel extends BaseViewModel
     _usernameStreamController.close();
     _passwordStreamController.close();
     _areAllInputsValidStreamController.close();
+    super.dispose();
   }
 
   @override
   void start() {
-    // TODO: implement start
+    //view model should tell view please show content state
+    inputState.add(ContentState());
   }
 
   @override

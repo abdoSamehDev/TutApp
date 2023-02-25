@@ -14,6 +14,7 @@ class OnBoardingViewModel extends BaseViewModel with OnBoardingViewModelInputs, 
   @override
   void dispose() {
     _streamController.close();
+    super.dispose();
   }
 
   @override
@@ -47,7 +48,6 @@ class OnBoardingViewModel extends BaseViewModel with OnBoardingViewModelInputs, 
   }
 
   @override
-  // TODO: implement inputSliderViewObject
   Sink get inputSliderViewObject => _streamController.sink;
 
   //OnBoarding ViewModel outputs
