@@ -1,5 +1,5 @@
 import 'package:advanced_flutter_arabic/app/di.dart';
-import 'package:advanced_flutter_arabic/presentation/forgot_password/forgot_password_view.dart';
+import 'package:advanced_flutter_arabic/presentation/forgot_password/view/forgot_password_view.dart';
 import 'package:advanced_flutter_arabic/presentation/home/home_view.dart';
 import 'package:advanced_flutter_arabic/presentation/login/view/login_view.dart';
 import 'package:advanced_flutter_arabic/presentation/onboarding/view/onboarding_view.dart';
@@ -23,7 +23,7 @@ class RoutesGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.splashRoute:
-        return MaterialPageRoute(builder: (_) =>  SplashView());
+        return MaterialPageRoute(builder: (_) =>  const SplashView());
       case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: (_) => const OnBoardingView());
       case Routes.loginRoute:
@@ -32,6 +32,7 @@ class RoutesGenerator {
       case Routes.registerRoute:
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case Routes.forgotPasswordRoute:
+        initForgotPasswordModule();
         return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
       case Routes.homeRoute:
         return MaterialPageRoute(builder: (_) => const HomeView());

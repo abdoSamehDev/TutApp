@@ -39,3 +39,9 @@ class Authentication{
 
   Authentication(this.customer, this.contacts);
 }
+
+class ForgotPassword{
+  String code;
+
+  ForgotPassword(this.code);
+}

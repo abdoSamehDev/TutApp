@@ -21,6 +21,7 @@ enum StateRendererType {
   contentState
 }
 
+// ignore: must_be_immutable
 class StateRenderer extends StatelessWidget {
   StateRendererType stateRendererType;
   String message;

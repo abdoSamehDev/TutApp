@@ -18,10 +18,14 @@ class AppStrings{
 
   //login screen
   static const username = "Username";
+  static const email = "Email";
+  static const emailHint = "name@example.com";
   static const usernameError = "Please Enter Your Username";
+  static const emailError = "Please Enter A Valid Email";
   static const password = "Password";
   static const passwordError = "Please Enter Your Password";
   static const login = "Login";
+  static const sendEmail = "Reset Password";
   static const forgetPassword = "Forget Password";
   static const registerText = "Not a member? Sign Up";
 

@@ -30,3 +30,12 @@ extension AuthenticationResponseMapper on AuthenticationResponse? {
     );
   }
 }
+
+
+extension ForgotPasswordMapper on ForgotPasswordResponse? {
+  ForgotPassword toDomain() {
+    return ForgotPassword(
+      this?.code.orEmpty() ?? Constants.empty
+    );
+  }
+}

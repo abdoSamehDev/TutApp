@@ -38,4 +38,28 @@ class RepositoryImpl implements Repository{
 
   }
 
+  @override
+  Future<Either<Failure, ForgotPassword>> forgotPassword(String email) async {
+
+    if(await _networkInfo.isConnected){
+      try{
+        final response = await _remoteDataSource.forgotPassword(email);
+
+        if(response.status == ApiInternalStatus.success){
+          //success
+          return Right(response.toDomain());
+        } else{
+          //failure (business)
+          return Left(Failure(ApiInternalStatus.failure, response.message ?? ResponseMessage.unknown));
+        }
+      }catch(error){
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else{
+      //failure (connection)
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+
+  }
+
 }

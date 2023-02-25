@@ -67,7 +67,7 @@ import '../resources/routes_manager.dart';
 
 class SplashView extends StatefulWidget {
 
-  SplashView({Key? key}) : super(key: key);
+  const SplashView({Key? key}) : super(key: key);
 
   @override
   State<SplashView> createState() => _SplashViewState();
