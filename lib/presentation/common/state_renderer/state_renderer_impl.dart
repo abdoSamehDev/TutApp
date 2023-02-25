@@ -86,13 +86,14 @@ extension FlowStateExtension on FlowState {
         }
       case ErrorState:
         {
+          dismissDialog(context);
           if (getStateRendererType() == StateRendererType.popupErrorState) {
             //show popup
             showPopup(context, getStateRendererType(), getMessage());
             //show ui of the screen
             return screenContentWidget;
           } else {
-            //full screen loading state
+            //full screen error state
             return StateRenderer(
               stateRendererType: getStateRendererType(),
               retryActionFunction: retryActionFunction,
@@ -102,20 +103,33 @@ extension FlowStateExtension on FlowState {
         }
       case EmptyState:
         {
+          dismissDialog(context);
           return StateRenderer(
             stateRendererType: getStateRendererType(),
-            retryActionFunction: (){},
+            retryActionFunction: () {},
             message: getMessage(),
           );
         }
       case ContentState:
         {
+          dismissDialog(context);
           return screenContentWidget;
         }
       default:
         {
+          dismissDialog(context);
           return screenContentWidget;
         }
+    }
+  }
+
+  bool _isCurrentDialogShowing(BuildContext context) {
+    return ModalRoute.of(context)?.isCurrent != true;
+  }
+
+  dismissDialog(BuildContext context){
+    if(_isCurrentDialogShowing(context)){
+      Navigator.of(context, rootNavigator: true).pop(true);
     }
   }
 
