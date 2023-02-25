@@ -1,4 +1,3 @@
-import 'package:advanced_flutter_arabic/data/network/failure.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/assets_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/color_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/font_manager.dart';
@@ -46,9 +45,9 @@ class StateRenderer extends StatelessWidget {
   Widget _getStateWidget(context) {
     switch (stateRendererType) {
       case StateRendererType.popupLoadingState:
-        return _getDialogContent([_getAnimatedImage(JsonAssets.loading)]);
+        return _getPopupDialog([_getAnimatedImage(JsonAssets.loading)]);
       case StateRendererType.popupErrorState:
-        return _getDialogContent([
+        return _getPopupDialog([
           _getAnimatedImage(JsonAssets.error),
           _getMessage(message),
           _getRetryButton(AppStrings.ok, context),
@@ -88,8 +87,7 @@ class StateRenderer extends StatelessWidget {
     return SizedBox(
         height: AppSize.s100,
         width: AppSize.s100,
-        child: Lottie.asset(animationName)
-        );
+        child: Lottie.asset(animationName));
   }
 
   Widget _getMessage(String message) {
