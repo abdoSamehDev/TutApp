@@ -1,4 +1,5 @@
 import 'package:advanced_flutter_arabic/app/di.dart';
+import 'package:advanced_flutter_arabic/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:advanced_flutter_arabic/presentation/login/view_model/login_view_model.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/assets_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/color_manager.dart';
@@ -39,130 +40,136 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return _getContentWidget();
+    return Scaffold(
+      backgroundColor: ColorManager.white,
+      body: StreamBuilder<FlowState>(
+          stream: _viewModel.outputState,
+          builder: (context, snapshot) {
+            return snapshot.data
+                    ?.getScreenWidget(context, _getContentWidget(), () {}) ??
+                _getContentWidget();
+          }),
+    );
   }
 
   Widget _getContentWidget() {
-    return Scaffold(
-      backgroundColor: ColorManager.white,
-      body: Container(
-        padding: const EdgeInsets.only(top: AppPadding.p100),
-        child: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                const Center(
-                  child: Image(
-                    image: AssetImage(ImageAssets.splashLogo),
-                  ),
+    return Container(
+      padding: const EdgeInsets.only(top: AppPadding.p100),
+      child: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              const Center(
+                child: Image(
+                  image: AssetImage(ImageAssets.splashLogo),
                 ),
-                const SizedBox(
-                  height: AppSize.s25,
+              ),
+              const SizedBox(
+                height: AppSize.s25,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppPadding.p20,
                 ),
-                Padding(
+                child: StreamBuilder<bool>(
+                  stream: _viewModel.outIsUsernameValid,
+                  builder: (context, snapshot) {
+                    return TextFormField(
+                      keyboardType: TextInputType.text,
+                      controller: _usernameController,
+                      decoration: InputDecoration(
+                          label: const Text(AppStrings.username),
+                          hintText: AppStrings.username,
+                          errorText: (snapshot.data ?? true)
+                              ? null
+                              : AppStrings.usernameError),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: AppSize.s14,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppPadding.p20,
+                ),
+                child: StreamBuilder<bool>(
+                  stream: _viewModel.outIsPasswordValid,
+                  builder: (context, snapshot) {
+                    return TextFormField(
+                      keyboardType: TextInputType.visiblePassword,
+                      controller: _passwordController,
+                      decoration: InputDecoration(
+                          label: const Text(AppStrings.password),
+                          hintText: AppStrings.password,
+                          errorText: (snapshot.data ?? true)
+                              ? null
+                              : AppStrings.passwordError),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: AppSize.s14,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppPadding.p20,
+                ),
+                child: StreamBuilder<bool>(
+                  stream: _viewModel.outputAreAllInputsValid,
+                  builder: (context, snapshot) {
+                    return SizedBox(
+                      width: double.infinity,
+                      height: AppSize.s40,
+                      child: ElevatedButton(
+                        onPressed: (snapshot.data ?? false)
+                            ? () {
+                                _viewModel.login();
+                              }
+                            : null,
+                        child: const Text(
+                          AppStrings.login,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: AppSize.s14,
+              ),
+              Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: AppPadding.p20,
                   ),
-                  child: StreamBuilder<bool>(
-                    stream: _viewModel.outIsUsernameValid,
-                    builder: (context, snapshot) {
-                      return TextFormField(
-                        keyboardType: TextInputType.text,
-                        controller: _usernameController,
-                        decoration: InputDecoration(
-                            label: const Text(AppStrings.username),
-                            hintText: AppStrings.username,
-                            errorText: (snapshot.data ?? true)
-                                ? null
-                                : AppStrings.usernameError),
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(
-                  height: AppSize.s14,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppPadding.p20,
-                  ),
-                  child: StreamBuilder<bool>(
-                    stream: _viewModel.outIsPasswordValid,
-                    builder: (context, snapshot) {
-                      return TextFormField(
-                        keyboardType: TextInputType.visiblePassword,
-                        controller: _passwordController,
-                        decoration: InputDecoration(
-                            label: const Text(AppStrings.password),
-                            hintText: AppStrings.password,
-                            errorText: (snapshot.data ?? true)
-                                ? null
-                                : AppStrings.passwordError),
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(
-                  height: AppSize.s14,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppPadding.p20,
-                  ),
-                  child: StreamBuilder<bool>(
-                    stream: _viewModel.outputAreAllInputsValid,
-                    builder: (context, snapshot) {
-                      return SizedBox(
-                        width: double.infinity,
-                        height: AppSize.s40,
-                        child: ElevatedButton(
-                          onPressed: (snapshot.data ?? false)
-                              ? () {
-                                  _viewModel.login();
-                                }
-                              : null,
-                          child: const Text(
-                            AppStrings.login,
-                          ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, Routes.forgotPasswordRoute);
+                        },
+                        child: Text(
+                          AppStrings.forgetPassword,
+                          style: Theme.of(context).textTheme.labelMedium,
                         ),
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(
-                  height: AppSize.s14,
-                ),
-                Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppPadding.p20,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, Routes.forgotPasswordRoute);
-                          },
-                          child: Text(
-                            AppStrings.forgetPassword,
-                            style: Theme.of(context).textTheme.labelMedium,
-                          ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, Routes.registerRoute);
+                        },
+                        child: Text(
+                          AppStrings.registerText,
+                          style: Theme.of(context).textTheme.labelMedium,
                         ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, Routes.registerRoute);
-                          },
-                          child: Text(
-                            AppStrings.registerText,
-                            style: Theme.of(context).textTheme.labelMedium,
-                          ),
-                        ),
-                      ],
-                    )),
-              ],
-            ),
+                      ),
+                    ],
+                  )),
+            ],
           ),
         ),
       ),
