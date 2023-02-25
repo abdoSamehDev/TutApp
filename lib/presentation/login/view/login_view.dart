@@ -30,6 +30,15 @@ class _LoginViewState extends State<LoginView> {
     _passwordController.addListener(() {
       _viewModel.setPassword(_passwordController.text);
     });
+    _viewModel.isUserLoggedInSuccessfully.stream.listen((isLoggedIn) {
+      if (isLoggedIn) {
+        WidgetsBinding.instance.addPostFrameCallback(
+          (_) {
+            Navigator.pushReplacementNamed(context, Routes.homeRoute);
+          },
+        );
+      }
+    });
   }
 
   @override
