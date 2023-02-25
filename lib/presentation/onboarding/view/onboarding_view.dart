@@ -42,47 +42,52 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   }
 
   Widget _getContentWidget(SliderViewObject? sliderViewObject) {
-    return Scaffold(
-      backgroundColor: ColorManager.white,
-      appBar: AppBar(
-        backgroundColor: ColorManager.transparent,
-        elevation: AppSize.s0,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: ColorManager.white,
-          statusBarIconBrightness: Brightness.dark,
+    if(sliderViewObject == null){
+      return Container();
+    } else{
+      return Scaffold(
+        backgroundColor: ColorManager.white,
+        appBar: AppBar(
+          backgroundColor: ColorManager.transparent,
+          elevation: AppSize.s0,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: ColorManager.white,
+            statusBarIconBrightness: Brightness.dark,
+          ),
         ),
-      ),
-      body: PageView.builder(
-          controller: _pageController,
-          itemCount: sliderViewObject?.numOfSlides,
-          onPageChanged: (index) {
-            _viewModel.onPageChanged(index);
-          },
-          itemBuilder: (context, index) {
-            return OnBoardingPage(sliderViewObject!.sliderObject);
-          }),
-      bottomSheet: Container(
-        color: ColorManager.white,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Align(
-              alignment: AlignmentDirectional.centerEnd,
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, Routes.loginRoute);
-                },
-                child: Text(
-                  AppStrings.skip,
-                  style: Theme.of(context).textTheme.labelMedium,
+        body: PageView.builder(
+            controller: _pageController,
+            itemCount: sliderViewObject.numOfSlides,
+            onPageChanged: (index) {
+              _viewModel.onPageChanged(index);
+            },
+            itemBuilder: (context, index) {
+              return OnBoardingPage(sliderViewObject.sliderObject);
+            }),
+        bottomSheet: Container(
+          color: ColorManager.white,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Align(
+                alignment: AlignmentDirectional.centerEnd,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, Routes.loginRoute);
+                  },
+                  child: Text(
+                    AppStrings.skip,
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
                 ),
               ),
-            ),
-            _getBottomSheetWidget(sliderViewObject!),
-          ],
+              _getBottomSheetWidget(sliderViewObject),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }
+
   }
 
   Widget _getBottomSheetWidget(SliderViewObject sliderViewObject) {

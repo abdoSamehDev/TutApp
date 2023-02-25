@@ -129,18 +129,17 @@ extension FlowStateExtension on FlowState {
 
   dismissDialog(BuildContext context) {
     if (_isCurrentDialogShowing(context)) {
-      Navigator.of(context, rootNavigator: true).pop(true);
+      Navigator.pop(context);
     }
   }
 
   void showPopup(BuildContext context, StateRendererType stateRendererType,
       String message) {
-    showDialog(
+    WidgetsBinding.instance.addPostFrameCallback((_) => showDialog(
         context: context,
-        builder: (context) => StateRenderer(
-              stateRendererType: stateRendererType,
-              retryActionFunction: () {},
-              message: message,
-            ));
+        builder: (BuildContext context) => StateRenderer(
+            stateRendererType: stateRendererType,
+            message: message,
+            retryActionFunction: () {})));
   }
 }

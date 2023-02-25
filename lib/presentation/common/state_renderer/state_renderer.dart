@@ -35,8 +35,6 @@ class StateRenderer extends StatelessWidget {
     super.key,
   });
 
-// const StateRenderer({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return _getStateWidget(context);
@@ -132,16 +130,8 @@ class StateRenderer extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppSize.s14),
       ),
       elevation: AppSize.s1_5,
-      backgroundColor: ColorManager.transparent,
-      child: Container(
-        decoration: BoxDecoration(
-          color: ColorManager.white,
-          shape: BoxShape.rectangle,
-          borderRadius: BorderRadius.circular(AppSize.s14),
-          boxShadow: const [BoxShadow(color: Colors.black26)],
-        ),
-        child: _getDialogContent(children),
-      ),
+      backgroundColor: ColorManager.white,
+      child: _getDialogContent(children),
     );
   }
 
