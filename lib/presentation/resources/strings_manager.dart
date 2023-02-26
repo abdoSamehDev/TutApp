@@ -33,7 +33,11 @@ class AppStrings{
   //loading state
   static const loading = "Loading...";
 
+  //success state
+  static const success = "Success";
+
   //error state
+  static const error = "Error";
   static const retryAgain = "Retry Again";
   static const ok = "OK";
 

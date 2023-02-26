@@ -1,3 +1,4 @@
+import 'package:advanced_flutter_arabic/app/constants.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/assets_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/color_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/font_manager.dart';
@@ -17,6 +18,9 @@ enum StateRendererType {
   fullScreenErrorState,
   fullScreenEmptyState,
 
+  //SUCCESS
+  popupSuccessState,
+
   //GENERAL
   contentState
 }
@@ -31,7 +35,7 @@ class StateRenderer extends StatelessWidget {
   StateRenderer({
     required this.stateRendererType,
     this.message = AppStrings.loading,
-    this.title = "",
+    this.title = Constants.empty,
     required this.retryActionFunction,
     super.key,
   });
@@ -48,6 +52,14 @@ class StateRenderer extends StatelessWidget {
       case StateRendererType.popupErrorState:
         return _getPopupDialog([
           _getAnimatedImage(JsonAssets.error),
+          _getTitle(title),
+          _getMessage(message),
+          _getRetryButton(AppStrings.ok, context),
+        ]);
+      case StateRendererType.popupSuccessState:
+        return _getPopupDialog([
+          _getAnimatedImage(JsonAssets.success),
+          _getTitle(title),
           _getMessage(message),
           _getRetryButton(AppStrings.ok, context),
         ]);
@@ -89,6 +101,20 @@ class StateRenderer extends StatelessWidget {
         child: Lottie.asset(animationName));
   }
 
+  Widget _getTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.all(AppPadding.p8),
+      child: Text(
+        title,
+        style: getSemiBoldStyle(
+          color: ColorManager.black,
+          fontSize: FontSize.s20,
+        ),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+
   Widget _getMessage(String message) {
     return Padding(
       padding: const EdgeInsets.all(AppPadding.p8),
@@ -98,6 +124,7 @@ class StateRenderer extends StatelessWidget {
           color: ColorManager.black,
           fontSize: FontSize.s18,
         ),
+        textAlign: TextAlign.center,
       ),
     );
   }

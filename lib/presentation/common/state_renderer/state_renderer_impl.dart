@@ -27,10 +27,12 @@ class LoadingState extends FlowState {
 //error state (popup & full screen)
 class ErrorState extends FlowState {
   StateRendererType stateRendererType;
+  String title;
   String message;
 
   ErrorState({
     required this.stateRendererType,
+    this.title = Constants.empty,
     required this.message,
   });
 
@@ -39,6 +41,23 @@ class ErrorState extends FlowState {
 
   @override
   StateRendererType getStateRendererType() => stateRendererType;
+}
+
+//success state (popup)
+class SuccessState extends FlowState {
+  String title;
+  String message;
+
+  SuccessState({
+    this.title = AppStrings.success,
+    required this.message,
+  });
+
+  @override
+  String getMessage() => message;
+
+  @override
+  StateRendererType getStateRendererType() => StateRendererType.popupSuccessState;
 }
 
 //content state
@@ -84,12 +103,20 @@ extension FlowStateExtension on FlowState {
             );
           }
         }
+      case SuccessState:
+        {
+          dismissDialog(context);
+            //show popup
+            showPopup(context, getStateRendererType(), getMessage());
+            //show ui of the screen
+            return screenContentWidget;
+        }
       case ErrorState:
         {
           dismissDialog(context);
           if (getStateRendererType() == StateRendererType.popupErrorState) {
             //show popup
-            showPopup(context, getStateRendererType(), getMessage());
+            showPopup(context, getStateRendererType(), getMessage(), title: AppStrings.error);
             //show ui of the screen
             return screenContentWidget;
           } else {
@@ -134,11 +161,12 @@ extension FlowStateExtension on FlowState {
   }
 
   void showPopup(BuildContext context, StateRendererType stateRendererType,
-      String message) {
+      String message, {String title = Constants.empty}) {
     WidgetsBinding.instance.addPostFrameCallback((_) => showDialog(
         context: context,
         builder: (BuildContext context) => StateRenderer(
             stateRendererType: stateRendererType,
+            title: title,
             message: message,
             retryActionFunction: () {})));
   }

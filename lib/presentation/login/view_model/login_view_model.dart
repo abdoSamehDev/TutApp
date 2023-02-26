@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:advanced_flutter_arabic/domain/use_case/login_use_case.dart';
 import 'package:advanced_flutter_arabic/presentation/base/base_view_model.dart';
 import 'package:advanced_flutter_arabic/presentation/common/freezed_data_class.dart';
@@ -68,20 +67,24 @@ class LoginViewModel extends BaseViewModel
     ));
     (await _loginUseCase.execute(
             LoginUseCaseInput(loginObject.username, loginObject.password)))
-        .fold(
-            (failure)  {
-                  //Failure (left)
-                  inputState.add(ErrorState(
-                      stateRendererType: StateRendererType.popupErrorState,
-                      message: failure.message));
-                },
-            (data)  {
-                  //Success (Right)
-                  //content state
-                  inputState.add(ContentState());
-                  //navigate to home screen
-              isUserLoggedInSuccessfully.add(true);
-                });
+        .fold((failure) {
+      //Failure (left)
+      inputState.add(
+        ErrorState(
+          stateRendererType: StateRendererType.popupErrorState,
+          message: failure.message,
+        ),
+      );
+    }, (data) {
+      //Success (Right)
+      inputState.add(
+        SuccessState(
+          message: data.message,
+        ),
+      );
+      //navigate to home screen
+      isUserLoggedInSuccessfully.add(true);
+    });
   }
 
   //outputs

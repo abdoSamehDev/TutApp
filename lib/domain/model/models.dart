@@ -15,17 +15,16 @@ class SliderViewObject {
   SliderViewObject(this.sliderObject, this.currentIndex, this.numOfSlides);
 }
 
-
 //login models
- class Customer{
+class Customer {
   String id;
   String name;
   int numOfNotifications;
 
   Customer(this.id, this.name, this.numOfNotifications);
- }
+}
 
-class Contacts{
+class Contacts {
   String phone;
   String email;
   String link;
@@ -33,15 +32,19 @@ class Contacts{
   Contacts(this.phone, this.email, this.link);
 }
 
-class Authentication{
+class Authentication {
+  int status;
+  String message;
   Customer? customer;
   Contacts? contacts;
 
-  Authentication(this.customer, this.contacts);
+  Authentication(this.status, this.message, this.customer, this.contacts);
 }
 
-class ForgotPassword{
+class ForgotPassword {
+  int status;
+  String message;
   String code;
 
-  ForgotPassword(this.code);
+  ForgotPassword(this.status, this.message, this.code);
 }

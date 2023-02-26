@@ -54,13 +54,19 @@ class ForgotPasswordViewModel extends BaseViewModel
     ));
     (await _forgotPasswordUseCase.execute(email)).fold((failure) {
       //Failure (left)
-      inputState.add(ErrorState(
+      inputState.add(
+        ErrorState(
           stateRendererType: StateRendererType.popupErrorState,
-          message: failure.message));
+          message: failure.message,
+        ),
+      );
     }, (success) {
       //Success (Right)
-      //content state
-      inputState.add(ContentState());
+      inputState.add(
+        SuccessState(
+          message: success.message,
+        ),
+      );
       //navigate back to login screen
       isResetEmailSent.add(true);
     });

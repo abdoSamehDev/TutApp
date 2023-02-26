@@ -25,6 +25,8 @@ extension ContactsResponseMapper on ContactsResponse? {
 extension AuthenticationResponseMapper on AuthenticationResponse? {
   Authentication toDomain() {
     return Authentication(
+      this?.status.orZero() ?? Constants.zero,
+      this?.message.orEmpty() ?? Constants.empty,
       this?.customer.toDomain(),
       this?.contacts.toDomain(),
     );
@@ -35,6 +37,8 @@ extension AuthenticationResponseMapper on AuthenticationResponse? {
 extension ForgotPasswordMapper on ForgotPasswordResponse? {
   ForgotPassword toDomain() {
     return ForgotPassword(
+      this?.status.orZero() ?? Constants.zero,
+      this?.message.orEmpty() ?? Constants.empty,
       this?.code.orEmpty() ?? Constants.empty
     );
   }
