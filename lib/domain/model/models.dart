@@ -48,3 +48,12 @@ class ForgotPassword {
 
   ForgotPassword(this.status, this.message, this.code);
 }
+
+class Register {
+  int status;
+  String message;
+  Customer? customer;
+  Contacts? contacts;
+
+  Register(this.status, this.message, this.customer, this.contacts);
+}
