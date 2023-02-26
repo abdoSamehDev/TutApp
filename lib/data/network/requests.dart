@@ -9,7 +9,7 @@ class LoginRequest {
 }
 
 class RegisterRequest {
-  String userName;
+  String username;
   String email;
   String password;
   String countryMobileCode;
@@ -17,7 +17,7 @@ class RegisterRequest {
   String profilePic;
 
   RegisterRequest(
-    this.userName,
+    this.username,
     this.email,
     this.password,
     this.countryMobileCode,

@@ -41,6 +41,12 @@ class AppStrings{
   static const retryAgain = "Retry Again";
   static const ok = "OK";
 
+  //register screen
+  static const invalidEmail = "Please Enter A Valid Email.";
+  static const invalidUsername = "Username Should Be At Least 4 Chars.";
+  static const invalidPassword = "Password Should Be At Least 6 Chars.";
+  static const invalidMobile = "Please Enter A Valid Mobile Number.";
+
 
 
 

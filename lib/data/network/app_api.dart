@@ -22,7 +22,7 @@ abstract class AppServiceClient {
 
   @POST(Constants.forgotPassword)
   Future<AuthenticationResponse> register(
-    @Field("user_name") String userName,
+    @Field("user_name") String username,
     @Field("email") String email,
     @Field("password") String password,
     @Field("country_mobile_code") String countryMobileCode,

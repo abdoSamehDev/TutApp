@@ -30,7 +30,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<AuthenticationResponse> register(RegisterRequest registerRequest) async {
     return await _appServiceClient.register(
-      registerRequest.userName,
+      registerRequest.username,
       registerRequest.email,
       registerRequest.password,
       registerRequest.countryMobileCode,

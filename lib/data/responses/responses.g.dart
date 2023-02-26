@@ -81,23 +81,3 @@ Map<String, dynamic> _$ForgotPasswordResponseToJson(
       'message': instance.message,
       'code': instance.code,
     };
-
-RegisterResponse _$RegisterResponseFromJson(Map<String, dynamic> json) =>
-    RegisterResponse(
-      json['customer'] == null
-          ? null
-          : CustomerResponse.fromJson(json['customer'] as Map<String, dynamic>),
-      json['contacts'] == null
-          ? null
-          : ContactsResponse.fromJson(json['contacts'] as Map<String, dynamic>),
-    )
-      ..status = json['status'] as int?
-      ..message = json['message'] as String?;
-
-Map<String, dynamic> _$RegisterResponseToJson(RegisterResponse instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      'message': instance.message,
-      'customer': instance.customer,
-      'contacts': instance.contacts,
-    };

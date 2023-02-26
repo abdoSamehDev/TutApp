@@ -3,7 +3,7 @@ import 'package:advanced_flutter_arabic/presentation/forgot_password/view/forgot
 import 'package:advanced_flutter_arabic/presentation/home/home_view.dart';
 import 'package:advanced_flutter_arabic/presentation/login/view/login_view.dart';
 import 'package:advanced_flutter_arabic/presentation/onboarding/view/onboarding_view.dart';
-import 'package:advanced_flutter_arabic/presentation/register/register_view.dart';
+import 'package:advanced_flutter_arabic/presentation/register/view/register_view.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/strings_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/splash/splash_view.dart';
 import 'package:advanced_flutter_arabic/presentation/store_details/store_details_view.dart';
