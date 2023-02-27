@@ -46,6 +46,13 @@ class AppStrings{
   static const invalidUsername = "Username Should Be At Least 4 Chars.";
   static const invalidPassword = "Password Should Be At Least 6 Chars.";
   static const invalidMobile = "Please Enter A Valid Mobile Number.";
+  static const register = "Register";
+  static const mobile = "Mobile Number";
+  static const loginText = "Already have an account? Sign In";
+  static const profilePic = "Profile Picture";
+  static const photoCamera = "Photo from camera";
+  static const photoGallery = "Photo from gallery";
+  static const egyDialCode = "+20";
 
 
 

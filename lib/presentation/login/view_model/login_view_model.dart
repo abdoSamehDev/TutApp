@@ -77,11 +77,11 @@ class LoginViewModel extends BaseViewModel
       );
     }, (data) {
       //Success (Right)
-      inputState.add(
-        SuccessState(
-          message: data.message,
-        ),
-      );
+      // inputState.add(
+      //   SuccessState(
+      //     message: data.message,
+      //   ),
+      // );
       //navigate to home screen
       isUserLoggedInSuccessfully.add(true);
     });

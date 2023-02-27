@@ -20,13 +20,13 @@ abstract class AppServiceClient {
     @Field("email") String email,
   );
 
-  @POST(Constants.forgotPassword)
+  @POST(Constants.register)
   Future<AuthenticationResponse> register(
-    @Field("user_name") String username,
-    @Field("email") String email,
-    @Field("password") String password,
-    @Field("country_mobile_code") String countryMobileCode,
-    @Field("mobile") String mobile,
-    @Field("profile_pic") String profilePic,
-  );
+      @Field("user_name") String username,
+      @Field("email") String email,
+      @Field("password") String password,
+      @Field("country_mobile_code") String countryMobileCode,
+      @Field("mobile") String mobile,
+      @Field("profile_picture") String profilePic,
+      );
 }

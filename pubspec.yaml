@@ -52,6 +52,8 @@ dependencies:
   freezed_annotation: ^2.2.0
   get_it: ^7.2.0
   lottie: ^2.2.0
+  country_list_pick: ^1.0.1+6
+  image_picker: ^0.8.6+3
 
 dev_dependencies:
   flutter_test:

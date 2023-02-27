@@ -6,10 +6,13 @@ import 'package:advanced_flutter_arabic/data/network/network_info.dart';
 import 'package:advanced_flutter_arabic/domain/repository/repository.dart';
 import 'package:advanced_flutter_arabic/domain/use_case/forgot_password_use_case.dart';
 import 'package:advanced_flutter_arabic/domain/use_case/login_use_case.dart';
+import 'package:advanced_flutter_arabic/domain/use_case/register_use_case.dart';
 import 'package:advanced_flutter_arabic/presentation/forgot_password/view_model/forgot_password_view_model.dart';
 import 'package:advanced_flutter_arabic/presentation/login/view_model/login_view_model.dart';
+import 'package:advanced_flutter_arabic/presentation/register/view_model/register_view_model.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -55,8 +58,16 @@ void initLoginModule() {
 }
 
 void initForgotPasswordModule() {
-  if (!GetIt.I.isRegistered<ForgotPasswordViewModel>()) {
+  if (!GetIt.I.isRegistered<ForgotPasswordUseCase>()) {
     instance.registerFactory<ForgotPasswordUseCase>(() => ForgotPasswordUseCase(instance()));
     instance.registerFactory<ForgotPasswordViewModel>(() => ForgotPasswordViewModel(instance()));
+  }
+}
+
+void initRegisterModule() {
+  if (!GetIt.I.isRegistered<RegisterUseCase>()) {
+    instance.registerFactory<RegisterUseCase>(() => RegisterUseCase(instance()));
+    instance.registerFactory<RegisterViewModel>(() => RegisterViewModel(instance()));
+    instance.registerFactory<ImagePicker>(() => ImagePicker());
   }
 }

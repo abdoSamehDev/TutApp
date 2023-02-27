@@ -90,7 +90,7 @@ class _AppServiceClient implements AppServiceClient {
       'password': password,
       'country_mobile_code': countryMobileCode,
       'mobile': mobile,
-      'profile_pic': profilePic,
+      'profile_picture': profilePic,
     };
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AuthenticationResponse>(Options(
@@ -100,7 +100,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/customers/forgot-password',
+              '/customers/register',
               queryParameters: queryParameters,
               data: _data,
             )

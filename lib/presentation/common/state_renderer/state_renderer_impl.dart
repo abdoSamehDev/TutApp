@@ -45,11 +45,10 @@ class ErrorState extends FlowState {
 
 //success state (popup)
 class SuccessState extends FlowState {
-  String title;
+  String title = AppStrings.success;
   String message;
 
   SuccessState({
-    this.title = AppStrings.success,
     required this.message,
   });
 
@@ -107,7 +106,7 @@ extension FlowStateExtension on FlowState {
         {
           dismissDialog(context);
             //show popup
-            showPopup(context, getStateRendererType(), getMessage());
+            showPopup(context, getStateRendererType(), getMessage(), title: AppStrings.success);
             //show ui of the screen
             return screenContentWidget;
         }

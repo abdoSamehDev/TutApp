@@ -26,13 +26,13 @@ class RegisterViewModel extends BaseViewModel
       StreamController<File>.broadcast();
   final StreamController _areAllInputsValidStreamController =
       StreamController.broadcast();
-  final StreamController isUserLoggedInSuccessfully = StreamController<bool>();
+  final StreamController isUserRegisteredSuccessfully = StreamController<bool>();
 
   var registerObject = RegisterObject(
     "",
     "",
     "",
-    "",
+    AppStrings.egyDialCode,
     "",
     "",
   );
@@ -47,7 +47,7 @@ class RegisterViewModel extends BaseViewModel
     _mobileStreamController.close();
     _profilePicStreamController.close();
     _areAllInputsValidStreamController.close();
-    isUserLoggedInSuccessfully.close();
+    isUserRegisteredSuccessfully.close();
   }
 
   @override
@@ -74,59 +74,50 @@ class RegisterViewModel extends BaseViewModel
   @override
   Sink get inputAreAllInputsValid => _areAllInputsValidStreamController.sink;
 
-
-
-
-
-
-
-
-
-
-
   @override
   setUsername(String username) {
     inputUsername.add(username);
     registerObject = registerObject.copyWith(username: username);
-    inputAreAllInputsValid.add(null);
+    validate();
   }
 
   @override
   setEmail(String email) {
     inputEmail.add(email);
     registerObject = registerObject.copyWith(email: email);
-    inputAreAllInputsValid.add(null);
+    validate();
   }
 
   @override
   setPassword(String password) {
     inputPassword.add(password);
     registerObject = registerObject.copyWith(password: password);
-    inputAreAllInputsValid.add(null);
+    validate();
   }
 
   @override
   setCountryMobileCode(String countryMobileCode) {
-    if(countryMobileCode.isNotEmpty){
-      registerObject =registerObject.copyWith(countryMobileCode: countryMobileCode);
-    }else{
-      registerObject =registerObject.copyWith(countryMobileCode: "");
+    if (countryMobileCode.isNotEmpty) {
+      registerObject =
+          registerObject.copyWith(countryMobileCode: countryMobileCode);
+    } else {
+      registerObject = registerObject.copyWith(countryMobileCode: "+20");
     }
-    inputAreAllInputsValid.add(null);
+    validate();
   }
 
   @override
   setMobile(String mobile) {
     inputMobile.add(mobile);
     registerObject = registerObject.copyWith(mobile: mobile);
-    inputAreAllInputsValid.add(null);
+    validate();
   }
 
   @override
   setProfilePic(File picture) {
     inputProfilePic.add(picture);
     registerObject = registerObject.copyWith(profilePic: picture.path);
-    inputAreAllInputsValid.add(null);
+    validate();
   }
 
   @override
@@ -152,13 +143,13 @@ class RegisterViewModel extends BaseViewModel
       );
     }, (data) {
       //Success (Right)
-      inputState.add(
-        SuccessState(
-          message: data.message,
-        ),
-      );
+      // inputState.add(
+      //   SuccessState(
+      //     message: data.message,
+      //   ),
+      // );
       //navigate to home screen
-      isUserLoggedInSuccessfully.add(true);
+      isUserRegisteredSuccessfully.add(true);
     });
   }
 
@@ -227,7 +218,15 @@ class RegisterViewModel extends BaseViewModel
 
   bool _areAllInputsValid() {
     return _isUsernameValid(registerObject.username) &&
-        _isPasswordValid(registerObject.password) && _isMobileValid(registerObject.mobile) && _isEmailValid(registerObject.email) && _isProfilePictureValid(registerObject.profilePic);
+        _isPasswordValid(registerObject.password) &&
+        _isMobileValid(registerObject.mobile) &&
+        _isEmailValid(registerObject.email) &&
+        // _isProfilePictureValid(registerObject.profilePic) &&
+    registerObject.countryMobileCode.isNotEmpty;
+  }
+
+  validate(){
+    inputAreAllInputsValid.add(null);
   }
 }
 
