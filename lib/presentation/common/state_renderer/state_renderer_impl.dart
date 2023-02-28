@@ -122,6 +122,7 @@ extension FlowStateExtension on FlowState {
             //full screen error state
             return StateRenderer(
               stateRendererType: getStateRendererType(),
+              title: AppStrings.error,
               retryActionFunction: retryActionFunction,
               message: getMessage(),
             );
