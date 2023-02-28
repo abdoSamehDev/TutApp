@@ -59,8 +59,8 @@ class AppStrings{
   static const notifications = "Notifications";
   static const search = "Search";
   static const settings = "Settings";
-  // static const register = "Register";
-  // static const mobile = "Mobile Number";
+  static const services = "Services";
+  static const stores = "Stores";
   // static const loginText = "Already have an account? Sign In";
   // static const profilePic = "Profile Picture";
   // static const photoCamera = "Photo from camera";

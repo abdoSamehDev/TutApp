@@ -57,13 +57,13 @@ class Service {
   Service(this.id, this.title, this.image);
 }
 
-class Banner {
+class BannerAd {
   int id;
   String link;
   String title;
   String image;
 
-  Banner(this.id, this.link, this.title, this.image);
+  BannerAd(this.id, this.link, this.title, this.image);
 }
 
 class Store {
@@ -76,7 +76,7 @@ class Store {
 
 class HomeData {
   List<Service> services;
-  List<Banner> banners;
+  List<BannerAd> banners;
   List<Store> stores;
 
   HomeData(this.services, this.banners, this.stores);
