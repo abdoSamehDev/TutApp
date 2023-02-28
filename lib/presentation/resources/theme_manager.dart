@@ -82,6 +82,10 @@ ThemeData getApplicationTheme() {
         color: ColorManager.darkGrey,
         fontSize: FontSize.s14,
       ),
+      bodyMedium: getRegularStyle(
+        color: ColorManager.grey2,
+        fontSize: FontSize.s12,
+      ),
       //Button Label
       labelLarge: getRegularStyle(
         color: ColorManager.grey1,

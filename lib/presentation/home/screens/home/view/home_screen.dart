@@ -71,23 +71,24 @@ class _HomeScreenState extends State<HomeScreen> {
     if (banners != null) {
       return CarouselSlider(
           items: banners
-              .map((banner) => SizedBox(
-                    width: double.infinity,
-                    child: Card(
-                      elevation: AppSize.s1_5,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(AppSize.s12),
-                          side: BorderSide(
-                              color: ColorManager.primary, width: AppSize.s1)),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(AppSize.s12),
-                        child: Image.network(
-                          banner.image,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+              .map((banner) =>
+              SizedBox(
+                width: double.infinity,
+                child: Card(
+                  elevation: AppSize.s1_5,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppSize.s12),
+                      side: BorderSide(
+                          color: ColorManager.primary, width: AppSize.s1)),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(AppSize.s12),
+                    child: Image.network(
+                      banner.image,
+                      fit: BoxFit.cover,
                     ),
-                  ))
+                  ),
+                ),
+              ))
               .toList(),
           options: CarouselOptions(
             height: AppSize.s90,
@@ -107,13 +108,85 @@ class _HomeScreenState extends State<HomeScreen> {
           right: AppPadding.p12,
           top: AppPadding.p12,
           bottom: AppPadding.p2),
-      child: Text(title, style: Theme.of(context).textTheme.titleSmall),
+      child: Text(title, style: Theme
+          .of(context)
+          .textTheme
+          .titleSmall),
     );
   }
 
-  Widget _getServices() {}
+  Widget _getServices() {
+    return StreamBuilder<List<Service>>(
+        stream: _viewModel.outputServices,
+        builder: (context, snapShot) {
+          return _getServiceWidget(snapShot.data);
+        });
+  }
 
-  Widget _getStores() {}
+  Widget _getServiceWidget(List<Service>? services) {
+    if (services != null) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: AppPadding.p12),
+        child: Container(
+          height: AppSize.s140,
+          margin: const EdgeInsets.symmetric(vertical: AppMargin.m12),
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children:
+            services.map((service) =>
+                Card(
+                  elevation: AppSize.s4,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(AppSize.s12),
+                    side: BorderSide(
+                      color: ColorManager.primary, width: AppSize.s1,
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      ClipRRect(
+                          borderRadius: BorderRadius.circular(AppSize.s12),
+                          child: Image.network(service.image, fit: BoxFit.cover,
+                            width: AppSize.s100,
+                            height: AppSize.s100,)),
+                      Padding(
+                        padding: const EdgeInsets.only(top: AppPadding.p8),
+                        child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              service.title, textAlign: TextAlign.center,
+                              style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .bodyMedium,)),
+                      ),
+                    ],
+                  ),
+                )).toList()
+            ,
+          ),
+        ),
+      );
+    } else {
+      return Container();
+    }
+  }
+
+  Widget _getStores() {
+    return StreamBuilder<List<Store>>(
+        stream: _viewModel.outputStores,
+        builder: (context, snapShot) {
+          return _getStoreWidget(snapShot.data);
+        });
+  }
+
+  Widget _getStoreWidget(List<Store>? stores) {
+    if (stores != null) {
+      return
+    } else {
+      return Container();
+    }
+  }
 
   @override
   void dispose() {
