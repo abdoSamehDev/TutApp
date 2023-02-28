@@ -1,7 +1,7 @@
-import 'package:advanced_flutter_arabic/presentation/home/screens/home_screen.dart';
-import 'package:advanced_flutter_arabic/presentation/home/screens/notifications_screen.dart';
-import 'package:advanced_flutter_arabic/presentation/home/screens/search_screen.dart';
-import 'package:advanced_flutter_arabic/presentation/home/screens/settings_screen.dart';
+import 'package:advanced_flutter_arabic/presentation/home/screens/home/view/home_screen.dart';
+import 'package:advanced_flutter_arabic/presentation/home/screens/notifications/view/notifications_screen.dart';
+import 'package:advanced_flutter_arabic/presentation/home/screens/search/view/search_screen.dart';
+import 'package:advanced_flutter_arabic/presentation/home/screens/settings/view/settings_screen.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/color_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
