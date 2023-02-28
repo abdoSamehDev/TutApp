@@ -5,9 +5,11 @@ import 'package:advanced_flutter_arabic/data/network/dio_factory.dart';
 import 'package:advanced_flutter_arabic/data/network/network_info.dart';
 import 'package:advanced_flutter_arabic/domain/repository/repository.dart';
 import 'package:advanced_flutter_arabic/domain/use_case/forgot_password_use_case.dart';
+import 'package:advanced_flutter_arabic/domain/use_case/home_use_case.dart';
 import 'package:advanced_flutter_arabic/domain/use_case/login_use_case.dart';
 import 'package:advanced_flutter_arabic/domain/use_case/register_use_case.dart';
 import 'package:advanced_flutter_arabic/presentation/forgot_password/view_model/forgot_password_view_model.dart';
+import 'package:advanced_flutter_arabic/presentation/home/screens/home/view_model/home_view_model.dart';
 import 'package:advanced_flutter_arabic/presentation/login/view_model/login_view_model.dart';
 import 'package:advanced_flutter_arabic/presentation/register/view_model/register_view_model.dart';
 import 'package:dio/dio.dart';
@@ -69,5 +71,12 @@ void initRegisterModule() {
     instance.registerFactory<RegisterUseCase>(() => RegisterUseCase(instance()));
     instance.registerFactory<RegisterViewModel>(() => RegisterViewModel(instance()));
     instance.registerFactory<ImagePicker>(() => ImagePicker());
+  }
+}
+
+void initHomeModule() {
+  if (!GetIt.I.isRegistered<HomeUseCase>()) {
+    instance.registerFactory<HomeUseCase>(() => HomeUseCase(instance()));
+    instance.registerFactory<HomeViewModel>(() => HomeViewModel(instance()));
   }
 }
