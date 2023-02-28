@@ -3,6 +3,7 @@ import 'package:advanced_flutter_arabic/domain/model/models.dart';
 import 'package:advanced_flutter_arabic/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:advanced_flutter_arabic/presentation/home/screens/home/view_model/home_view_model.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/color_manager.dart';
+import 'package:advanced_flutter_arabic/presentation/resources/routes_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/strings_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/values_manager.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -71,24 +72,23 @@ class _HomeScreenState extends State<HomeScreen> {
     if (banners != null) {
       return CarouselSlider(
           items: banners
-              .map((banner) =>
-              SizedBox(
-                width: double.infinity,
-                child: Card(
-                  elevation: AppSize.s1_5,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(AppSize.s12),
-                      side: BorderSide(
-                          color: ColorManager.primary, width: AppSize.s1)),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(AppSize.s12),
-                    child: Image.network(
-                      banner.image,
-                      fit: BoxFit.cover,
+              .map((banner) => SizedBox(
+                    width: double.infinity,
+                    child: Card(
+                      elevation: AppSize.s1_5,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(AppSize.s12),
+                          side: BorderSide(
+                              color: ColorManager.primary, width: AppSize.s1)),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(AppSize.s12),
+                        child: Image.network(
+                          banner.image,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ))
+                  ))
               .toList(),
           options: CarouselOptions(
             height: AppSize.s90,
@@ -108,10 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
           right: AppPadding.p12,
           top: AppPadding.p12,
           bottom: AppPadding.p2),
-      child: Text(title, style: Theme
-          .of(context)
-          .textTheme
-          .titleSmall),
+      child: Text(title, style: Theme.of(context).textTheme.titleSmall),
     );
   }
 
@@ -132,38 +129,40 @@ class _HomeScreenState extends State<HomeScreen> {
           margin: const EdgeInsets.symmetric(vertical: AppMargin.m12),
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children:
-            services.map((service) =>
-                Card(
-                  elevation: AppSize.s4,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppSize.s12),
-                    side: BorderSide(
-                      color: ColorManager.primary, width: AppSize.s1,
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      ClipRRect(
-                          borderRadius: BorderRadius.circular(AppSize.s12),
-                          child: Image.network(service.image, fit: BoxFit.cover,
-                            width: AppSize.s100,
-                            height: AppSize.s100,)),
-                      Padding(
-                        padding: const EdgeInsets.only(top: AppPadding.p8),
-                        child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              service.title, textAlign: TextAlign.center,
-                              style: Theme
-                                  .of(context)
-                                  .textTheme
-                                  .bodyMedium,)),
+            children: services
+                .map((service) => Card(
+                      elevation: AppSize.s4,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(AppSize.s12),
+                        side: BorderSide(
+                          color: ColorManager.primary,
+                          width: AppSize.s1,
+                        ),
                       ),
-                    ],
-                  ),
-                )).toList()
-            ,
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                              borderRadius: BorderRadius.circular(AppSize.s12),
+                              child: Image.network(
+                                service.image,
+                                fit: BoxFit.cover,
+                                width: AppSize.s100,
+                                height: AppSize.s100,
+                              )),
+                          Padding(
+                            padding: const EdgeInsets.only(top: AppPadding.p8),
+                            child: Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  service.title,
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                )),
+                          ),
+                        ],
+                      ),
+                    ))
+                .toList(),
           ),
         ),
       );
@@ -182,7 +181,37 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _getStoreWidget(List<Store>? stores) {
     if (stores != null) {
-      return
+      return Padding(
+        padding: const EdgeInsets.only(
+            left: AppPadding.p12, right: AppPadding.p12, top: AppPadding.p12),
+        child: Flex(
+          direction: Axis.vertical,
+          children: [
+            GridView.count(
+              crossAxisCount: AppSize.s2.toInt(),
+              crossAxisSpacing: AppSize.s8,
+              mainAxisSpacing: AppSize.s8,
+              physics: const ScrollPhysics(),
+              shrinkWrap: true,
+              children: List.generate(stores.length, (index) {
+                return InkWell(
+                  onTap: () {
+                    //navigate to store details screen
+                    Navigator.pushNamed(context, Routes.storeDetailsRoute);
+                  },
+                  child: Card(
+                    elevation: AppSize.s4,
+                    child: Image.network(
+                      stores[index].image,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                );
+              }),
+            )
+          ],
+        ),
+      );
     } else {
       return Container();
     }
