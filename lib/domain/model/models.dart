@@ -59,7 +59,7 @@ class Service {
 
 class Banner {
   int id;
-  int link;
+  String link;
   String title;
   String image;
 
