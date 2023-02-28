@@ -54,6 +54,19 @@ class AppStrings{
   static const photoGallery = "Photo from gallery";
   static const egyDialCode = "+20";
 
+  //home screen
+  static const home = "Home";
+  static const notifications = "Notifications";
+  static const search = "Search";
+  static const settings = "Settings";
+  // static const register = "Register";
+  // static const mobile = "Mobile Number";
+  // static const loginText = "Already have an account? Sign In";
+  // static const profilePic = "Profile Picture";
+  // static const photoCamera = "Photo from camera";
+  // static const photoGallery = "Photo from gallery";
+  // static const egyDialCode = "+20";
+
 
 
 
