@@ -9,10 +9,12 @@ import 'package:advanced_flutter_arabic/domain/use_case/forgot_password_use_case
 import 'package:advanced_flutter_arabic/domain/use_case/home_use_case.dart';
 import 'package:advanced_flutter_arabic/domain/use_case/login_use_case.dart';
 import 'package:advanced_flutter_arabic/domain/use_case/register_use_case.dart';
+import 'package:advanced_flutter_arabic/domain/use_case/store_details_use_case.dart';
 import 'package:advanced_flutter_arabic/presentation/forgot_password/view_model/forgot_password_view_model.dart';
 import 'package:advanced_flutter_arabic/presentation/home/screens/home/view_model/home_view_model.dart';
 import 'package:advanced_flutter_arabic/presentation/login/view_model/login_view_model.dart';
 import 'package:advanced_flutter_arabic/presentation/register/view_model/register_view_model.dart';
+import 'package:advanced_flutter_arabic/presentation/store_details/view_model/store_details_view_model.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
@@ -83,5 +85,12 @@ void initHomeModule() {
   if (!GetIt.I.isRegistered<HomeUseCase>()) {
     instance.registerFactory<HomeUseCase>(() => HomeUseCase(instance()));
     instance.registerFactory<HomeViewModel>(() => HomeViewModel(instance()));
+  }
+}
+
+void initStoreDetailsModule() {
+  if (!GetIt.I.isRegistered<StoreDetailsUseCase>()) {
+    instance.registerFactory<StoreDetailsUseCase>(() => StoreDetailsUseCase(instance()));
+    instance.registerFactory<StoreDetailsViewModel>(() => StoreDetailsViewModel(instance()));
   }
 }

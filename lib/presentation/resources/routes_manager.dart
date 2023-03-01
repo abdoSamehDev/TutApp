@@ -6,7 +6,7 @@ import 'package:advanced_flutter_arabic/presentation/onboarding/view/onboarding_
 import 'package:advanced_flutter_arabic/presentation/register/view/register_view.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/strings_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/splash/splash_view.dart';
-import 'package:advanced_flutter_arabic/presentation/store_details/store_details_view.dart';
+import 'package:advanced_flutter_arabic/presentation/store_details/view/store_details_view.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
@@ -39,6 +39,7 @@ class RoutesGenerator {
         initHomeModule();
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.storeDetailsRoute:
+        initStoreDetailsModule();
         return MaterialPageRoute(builder: (_) => const StoreDetailsView());
 
       default:

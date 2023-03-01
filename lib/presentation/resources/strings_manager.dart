@@ -67,6 +67,15 @@ class AppStrings{
   // static const photoGallery = "Photo from gallery";
   // static const egyDialCode = "+20";
 
+  //store details screen
+  static const storeDetails = "Store details";
+  static const details = "Details";
+  // static const services = "services";
+  static const aboutStore = "About Store";
+  // static const settings = "Settings";
+  // static const services = "Services";
+  // static const stores = "Stores";
+
 
 
 

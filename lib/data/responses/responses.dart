@@ -46,7 +46,6 @@ class ContactsResponse {
 
 //to Json
   Map<String, dynamic> toJson() => _$ContactsResponseToJson(this);
-
 }
 
 @JsonSerializable()
@@ -80,7 +79,6 @@ class ForgotPasswordResponse extends BaseResponse {
 //to Json
   Map<String, dynamic> toJson() => _$ForgotPasswordResponseToJson(this);
 }
-
 
 @JsonSerializable()
 class ServiceResponse {
@@ -174,7 +172,6 @@ class HomeResponse extends BaseResponse {
   @JsonKey(name: "data")
   HomeDataResponse? data;
 
-
   HomeResponse(this.data);
 
   //from Json
@@ -183,4 +180,36 @@ class HomeResponse extends BaseResponse {
 
 //to Json
   Map<String, dynamic> toJson() => _$HomeResponseToJson(this);
+}
+
+@JsonSerializable()
+class StoreDetailsResponse extends BaseResponse {
+  @JsonKey(name: "image")
+  String? image;
+  @JsonKey(name: "id")
+  int? id;
+  @JsonKey(name: "title")
+  String? title;
+  @JsonKey(name: "details")
+  String? details;
+  @JsonKey(name: "services")
+  String? services;
+  @JsonKey(name: "about")
+  String? about;
+
+  StoreDetailsResponse(
+    this.image,
+    this.id,
+    this.title,
+    this.details,
+    this.services,
+    this.about,
+  );
+
+  //from Json
+  factory StoreDetailsResponse.fromJson(Map<String, dynamic> json) =>
+      _$StoreDetailsResponseFromJson(json);
+
+//to Json
+  Map<String, dynamic> toJson() => _$StoreDetailsResponseToJson(this);
 }

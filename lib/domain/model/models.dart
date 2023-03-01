@@ -89,3 +89,25 @@ class HomeObject {
 
   HomeObject(this.status, this.message, this.data);
 }
+
+class StoreDetails {
+  int status;
+  String message;
+  String? image;
+  int? id;
+  String? title;
+  String? details;
+  String? services;
+  String? about;
+
+  StoreDetails(
+    this.status,
+    this.message,
+    this.image,
+    this.id,
+    this.title,
+    this.details,
+    this.services,
+    this.about,
+  );
+}
