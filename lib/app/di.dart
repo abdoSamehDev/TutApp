@@ -1,4 +1,5 @@
 import 'package:advanced_flutter_arabic/app/app_prefs.dart';
+import 'package:advanced_flutter_arabic/data/data_source/local_data_source.dart';
 import 'package:advanced_flutter_arabic/data/data_source/remote_data_source.dart';
 import 'package:advanced_flutter_arabic/data/network/app_api.dart';
 import 'package:advanced_flutter_arabic/data/network/dio_factory.dart';
@@ -47,9 +48,13 @@ Future initAppModule() async {
   instance.registerLazySingleton<RemoteDataSource>(
       () => RemoteDataSourceImpl(instance()));
 
+  //local data source instance
+  instance.registerLazySingleton<LocalDataSource>(
+          () => LocalDataSourceImpl());
+
   //repository instance
   instance.registerLazySingleton<Repository>(
-      () => RepositoryImpl(instance(), instance()));
+      () => RepositoryImpl(instance(), instance(), instance()));
 }
 
 void initLoginModule() {
