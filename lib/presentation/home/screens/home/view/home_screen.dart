@@ -61,10 +61,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _getBannersCarousel() {
-    return StreamBuilder<List<BannerAd>>(
-        stream: _viewModel.outputBanners,
+    return StreamBuilder<HomeObject>(
+        stream: _viewModel.outputHomeObject,
         builder: (context, snapShot) {
-          return _getBannerWidget(snapShot.data);
+          return _getBannerWidget(snapShot.data?.data?.banners);
         });
   }
 
@@ -113,10 +113,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _getServices() {
-    return StreamBuilder<List<Service>>(
-        stream: _viewModel.outputServices,
+    return StreamBuilder<HomeObject>(
+        stream: _viewModel.outputHomeObject,
         builder: (context, snapShot) {
-          return _getServiceWidget(snapShot.data);
+          return _getServiceWidget(snapShot.data?.data?.services);
         });
   }
 
@@ -172,10 +172,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _getStores() {
-    return StreamBuilder<List<Store>>(
-        stream: _viewModel.outputStores,
+    return StreamBuilder<HomeObject>(
+        stream: _viewModel.outputHomeObject,
         builder: (context, snapShot) {
-          return _getStoreWidget(snapShot.data);
+          return _getStoreWidget(snapShot.data?.data?.stores);
         });
   }
 
