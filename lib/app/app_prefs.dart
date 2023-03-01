@@ -36,4 +36,9 @@ class AppPreferences {
   Future<bool> isUserLoggedIn() async {
     return _preferences.getBool(prefsIsUserLoggedIn) ?? false;
   }
+
+  //logout
+  Future setUserLoggOut() async {
+    _preferences.setBool(prefsIsUserLoggedIn, false);
+  }
 }

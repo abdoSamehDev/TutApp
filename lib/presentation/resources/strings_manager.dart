@@ -76,6 +76,12 @@ class AppStrings{
   // static const services = "Services";
   // static const stores = "Stores";
 
+  //settings screen
+  static const changeLang = "Change Language";
+  static const contactUs = "Contact Us";
+  static const invite = "Invite Your Friends";
+  static const logout = "Logout";
+
 
 
 
