@@ -7,6 +7,7 @@ import 'package:advanced_flutter_arabic/presentation/common/freezed_data_class.d
 import 'package:advanced_flutter_arabic/presentation/common/state_renderer/state_renderer.dart';
 import 'package:advanced_flutter_arabic/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/strings_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class RegisterViewModel extends BaseViewModel
     with RegisterViewModelInputs, RegisterViewModelOutputs {
@@ -32,7 +33,7 @@ class RegisterViewModel extends BaseViewModel
     "",
     "",
     "",
-    AppStrings.egyDialCode,
+    "+20",
     "",
     "",
   );
@@ -160,7 +161,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   Stream<String?> get outErrorUsername => outIsUsernameValid.map(
-      (isUsernameValid) => isUsernameValid ? null : AppStrings.invalidUsername);
+      (isUsernameValid) => isUsernameValid ? null : AppStrings.invalidUsername.tr());
 
   @override
   Stream<bool> get outIsEmailValid =>
@@ -168,7 +169,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   Stream<String?> get outErrorEmail => outIsEmailValid
-      .map((isEmailValid) => isEmailValid ? null : AppStrings.invalidEmail);
+      .map((isEmailValid) => isEmailValid ? null : AppStrings.invalidEmail.tr());
 
   @override
   Stream<bool> get outIsPasswordValid => _passwordStreamController.stream
@@ -176,7 +177,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   Stream<String?> get outErrorPassword => outIsPasswordValid.map(
-      (isPasswordValid) => isPasswordValid ? null : AppStrings.invalidPassword);
+      (isPasswordValid) => isPasswordValid ? null : AppStrings.invalidPassword.tr());
 
   @override
   Stream<bool> get outIsMobileValid =>
@@ -184,7 +185,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   Stream<String?> get outErrorMobile => outIsMobileValid
-      .map((isMobileValid) => isMobileValid ? null : AppStrings.invalidMobile);
+      .map((isMobileValid) => isMobileValid ? null : AppStrings.invalidMobile.tr());
 
   @override
   Stream<File> get outIsProfilePicValid =>

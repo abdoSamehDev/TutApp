@@ -5,6 +5,7 @@ import 'package:advanced_flutter_arabic/presentation/resources/color_manager.dar
 import 'package:advanced_flutter_arabic/presentation/resources/strings_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/values_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/store_details/view_model/store_details_view_model.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class StoreDetailsView extends StatefulWidget {
@@ -33,7 +34,7 @@ class _StoreDetailsViewState extends State<StoreDetailsView> {
       appBar: AppBar(
         iconTheme: IconThemeData(color: ColorManager.white),
         title: Text(
-          AppStrings.storeDetails,
+          AppStrings.storeDetails.tr(),
           style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
@@ -63,11 +64,11 @@ class _StoreDetailsViewState extends State<StoreDetailsView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _getBannerWidget(),
-            _getSection(AppStrings.details),
+            _getSection(AppStrings.details.tr()),
             _getText(snapshot.data?.details),
-            _getSection(AppStrings.services),
+            _getSection(AppStrings.services.tr()),
             _getText(snapshot.data?.services),
-            _getSection(AppStrings.aboutStore),
+            _getSection(AppStrings.aboutStore.tr()),
             _getText(snapshot.data?.about),
           ],
         );

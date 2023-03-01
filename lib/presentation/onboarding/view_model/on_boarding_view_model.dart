@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:advanced_flutter_arabic/domain/model/models.dart';
 import 'package:advanced_flutter_arabic/presentation/base/base_view_model.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../resources/assets_manager.dart';
 import '../../resources/strings_manager.dart';
@@ -62,23 +63,23 @@ class OnBoardingViewModel extends BaseViewModel with OnBoardingViewModelInputs, 
 
   List<SliderObject> _getSliderData() => [
     SliderObject(
-      AppStrings.onBoardingTitle1,
-      AppStrings.onBoardingBody1,
+      AppStrings.onBoardingTitle1.tr(),
+      AppStrings.onBoardingBody1.tr(),
       ImageAssets.onBoarding1,
     ),
     SliderObject(
-      AppStrings.onBoardingTitle2,
-      AppStrings.onBoardingBody2,
+      AppStrings.onBoardingTitle2.tr(),
+      AppStrings.onBoardingBody2.tr(),
       ImageAssets.onBoarding2,
     ),
     SliderObject(
-      AppStrings.onBoardingTitle3,
-      AppStrings.onBoardingBody3,
+      AppStrings.onBoardingTitle3.tr(),
+      AppStrings.onBoardingBody3.tr(),
       ImageAssets.onBoarding3,
     ),
     SliderObject(
-      AppStrings.onBoardingTitle4,
-      AppStrings.onBoardingBody4,
+      AppStrings.onBoardingTitle4.tr(),
+      AppStrings.onBoardingBody4.tr(),
       ImageAssets.onBoarding4,
     ),
   ];

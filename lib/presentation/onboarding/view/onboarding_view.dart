@@ -7,6 +7,7 @@ import 'package:advanced_flutter_arabic/presentation/resources/color_manager.dar
 import 'package:advanced_flutter_arabic/presentation/resources/routes_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/strings_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/values_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -80,7 +81,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     Navigator.pushReplacementNamed(context, Routes.loginRoute);
                   },
                   child: Text(
-                    AppStrings.skip,
+                    AppStrings.skip.tr(),
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
                 ),
@@ -115,10 +116,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: AppPadding.p8),
-                  child: SvgPicture.asset(
-                    ImageAssets.leftArrow,
-                    width: AppSize.s25,
-                    height: AppSize.s25,
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    color: ColorManager.white,
                   ),
                 ),
               ),
@@ -147,10 +147,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: AppPadding.p8),
-                  child: SvgPicture.asset(
-                    ImageAssets.rightArrow,
-                    width: AppSize.s25,
-                    height: AppSize.s25,
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: ColorManager.white,
                   ),
                 ),
               ),

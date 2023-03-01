@@ -6,13 +6,12 @@ import 'package:advanced_flutter_arabic/presentation/resources/color_manager.dar
 import 'package:advanced_flutter_arabic/presentation/resources/routes_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/strings_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/values_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SettingsScreen extends StatefulWidget {
-
-
-
   const SettingsScreen({Key? key}) : super(key: key);
 
   @override
@@ -22,6 +21,7 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   final AppPreferences _preferences = instance<AppPreferences>();
   final LocalDataSource _localDataSource = instance<LocalDataSource>();
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -31,47 +31,71 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ListTile(
             leading: SvgPicture.asset(ImageAssets.changeLang),
             title: Text(
-              AppStrings.changeLang,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: ColorManager.grey),
+              AppStrings.changeLang.tr(),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(color: ColorManager.grey),
             ),
-            trailing: Icon(Icons.arrow_forward_ios, color: ColorManager.primary,),
-            onTap: (){
-
+            trailing: Icon(
+              Icons.arrow_forward_ios,
+              color: ColorManager.primary,
+            ),
+            onTap: () {
+              _changeLang();
             },
           ),
           const Divider(),
           ListTile(
             leading: SvgPicture.asset(ImageAssets.contactUs),
             title: Text(
-              AppStrings.contactUs,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: ColorManager.grey),
+              AppStrings.contactUs.tr(),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(color: ColorManager.grey),
             ),
-            trailing: Icon(Icons.arrow_forward_ios, color: ColorManager.primary,),
-            onTap: (){
-
+            trailing: Icon(
+              Icons.arrow_forward_ios,
+              color: ColorManager.primary,
+            ),
+            onTap: () {
+              _contactUs();
             },
           ),
           const Divider(),
           ListTile(
             leading: SvgPicture.asset(ImageAssets.inviteFriends),
             title: Text(
-              AppStrings.invite,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: ColorManager.grey),
+              AppStrings.invite.tr(),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(color: ColorManager.grey),
             ),
-            trailing: Icon(Icons.arrow_forward_ios, color: ColorManager.primary,),
-            onTap: (){
-
+            trailing: Icon(
+              Icons.arrow_forward_ios,
+              color: ColorManager.primary,
+            ),
+            onTap: () {
+              _inviteFriends();
             },
           ),
           const Divider(),
           ListTile(
             leading: SvgPicture.asset(ImageAssets.logout),
             title: Text(
-              AppStrings.logout ,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: ColorManager.grey),
+              AppStrings.logout.tr(),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(color: ColorManager.grey),
             ),
-            trailing: Icon(Icons.arrow_forward_ios, color: ColorManager.primary,),
-            onTap: (){
+            trailing: Icon(
+              Icons.arrow_forward_ios,
+              color: ColorManager.primary,
+            ),
+            onTap: () {
               _logout();
             },
           ),
@@ -80,15 +104,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  _changeLang(){
-
+  _changeLang() {
+    _preferences.changeAppLanguage();
+    Phoenix.rebirth(context);
   }
 
-  _inviteFriends(){}
+  _inviteFriends() {}
 
-  _contactUs(){}
+  _contactUs() {}
 
-  _logout(){
+  _logout() {
     // app prefs
     _preferences.setUserLoggOut();
 
@@ -98,5 +123,4 @@ class _SettingsScreenState extends State<SettingsScreen> {
     //navigate to login
     Navigator.pushReplacementNamed(context, Routes.loginRoute);
   }
-
 }

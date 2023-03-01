@@ -1,20 +1,22 @@
 import 'package:advanced_flutter_arabic/data/network/failure.dart';
+import 'package:advanced_flutter_arabic/presentation/resources/strings_manager.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ErrorHandler implements Exception {
   late Failure failure;
 
   ErrorHandler.handle(dynamic error) {
     if (error is DioError) {
-failure = _handleError(error);
-    }else{
+      failure = _handleError(error);
+    } else {
       failure = DataSource.unknown.getFailure();
     }
   }
 }
 
-Failure _handleError(DioError error){
-  switch (error.type){
+Failure _handleError(DioError error) {
+  switch (error.type) {
     case DioErrorType.connectionTimeout:
       return DataSource.connectTimeout.getFailure();
     case DioErrorType.sendTimeout:
@@ -24,9 +26,12 @@ Failure _handleError(DioError error){
     case DioErrorType.badCertificate:
       return DataSource.unauthorized.getFailure();
     case DioErrorType.badResponse:
-      if(error.response != null && error.response?.statusCode != null && error.response?.statusMessage != null){
-        return Failure(error.response!.statusCode!, error.response!.statusMessage!);
-      } else{
+      if (error.response != null &&
+          error.response?.statusCode != null &&
+          error.response?.statusMessage != null) {
+        return Failure(
+            error.response!.statusCode!, error.response!.statusMessage!);
+      } else {
         return DataSource.unknown.getFailure();
       }
     case DioErrorType.cancel:
@@ -114,30 +119,29 @@ class ResponseCode {
 }
 
 class ResponseMessage {
-  static const String success = "Success"; //success with data
-  static const String noContent = "Success"; //success with no data
-  static const String badRequest =
-      "Bad request, Try again later"; //failure, API rejected request
-  static const String unauthorized =
-      "User is unauthorized, Try again later"; //failure, user is not authorized
-  static const String forbidden =
-      "Forbidden request, Try again later"; //failure, API rejected request
-  static const String notFound = "Something went wrong, Try again later";
-  static const String internalServerError =
-      "Something went wrong, Try again later"; //failure, crash in server side
+  static String success = AppStrings.success.tr(); //success with data
+  static String noContent = AppStrings.noContent.tr(); //success with no data
+  static String badRequest =
+      AppStrings.badRequest.tr(); //failure, API rejected request
+  static String unauthorized =
+      AppStrings.unauthorized.tr(); //failure, user is not authorized
+  static String forbidden =
+      AppStrings.forbidden.tr(); //failure, API rejected request
+  static String notFound = AppStrings.notFound.tr();
+  static String internalServerError =
+      AppStrings.internalServerError.tr(); //failure, crash in server side
 
   //local status message
-  static const String connectTimeout = "Timeout error, Try again later";
-  static const String cancel = "Request was cancelled, Try again later";
-  static const String receiveTimeOut = "Timeout error, Try again later";
-  static const String sendTimeout = "Timeout error, Try again later";
-  static const String cacheError = "Cache error, Try again later";
-  static const String noInternetConnection =
-      "Please check your internet connection";
-  static const String unknown = "Something went wrong, Try again later";
+  static String connectTimeout = AppStrings.connectTimeout.tr();
+  static String cancel = AppStrings.cancel.tr();
+  static String receiveTimeOut = AppStrings.receiveTimeOut.tr();
+  static String sendTimeout = AppStrings.sendTimeout.tr();
+  static String cacheError = AppStrings.cacheError.tr();
+  static String noInternetConnection = AppStrings.noInternetConnection.tr();
+  static String unknown = AppStrings.unknown.tr();
 }
 
-class ApiInternalStatus{
+class ApiInternalStatus {
   static const int success = 0;
   static const int failure = 1;
 }

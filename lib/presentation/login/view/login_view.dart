@@ -6,6 +6,7 @@ import 'package:advanced_flutter_arabic/presentation/resources/assets_manager.da
 import 'package:advanced_flutter_arabic/presentation/resources/color_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/strings_manager.dart';
 import 'package:advanced_flutter_arabic/presentation/resources/values_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../resources/routes_manager.dart';
@@ -91,11 +92,11 @@ class _LoginViewState extends State<LoginView> {
                       keyboardType: TextInputType.text,
                       controller: _usernameController,
                       decoration: InputDecoration(
-                          label: const Text(AppStrings.username),
-                          hintText: AppStrings.username,
+                          label:  Text(AppStrings.username.tr()),
+                          hintText: AppStrings.username.tr(),
                           errorText: (snapshot.data ?? true)
                               ? null
-                              : AppStrings.usernameError),
+                              : AppStrings.usernameError.tr()),
                     );
                   },
                 ),
@@ -114,11 +115,11 @@ class _LoginViewState extends State<LoginView> {
                       keyboardType: TextInputType.visiblePassword,
                       controller: _passwordController,
                       decoration: InputDecoration(
-                          label: const Text(AppStrings.password),
-                          hintText: AppStrings.password,
+                          label:  Text(AppStrings.password.tr()),
+                          hintText: AppStrings.password.tr(),
                           errorText: (snapshot.data ?? true)
                               ? null
-                              : AppStrings.passwordError),
+                              : AppStrings.passwordError.tr()),
                     );
                   },
                 ),
@@ -142,8 +143,8 @@ class _LoginViewState extends State<LoginView> {
                                 _viewModel.login();
                               }
                             : null,
-                        child: const Text(
-                          AppStrings.login,
+                        child:  Text(
+                          AppStrings.login.tr(),
                         ),
                       ),
                     );
@@ -166,7 +167,7 @@ class _LoginViewState extends State<LoginView> {
                               context, Routes.forgotPasswordRoute);
                         },
                         child: Text(
-                          AppStrings.forgetPassword,
+                          AppStrings.forgetPassword.tr(),
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
                       ),
@@ -175,7 +176,7 @@ class _LoginViewState extends State<LoginView> {
                           Navigator.pushNamed(context, Routes.registerRoute);
                         },
                         child: Text(
-                          AppStrings.registerText,
+                          AppStrings.registerText.tr(),
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
                       ),
